@@ -9,10 +9,26 @@
                 </div>
                 <div class="card-body">
                     <div class="border p-3 rounded">
-                        <form class="row g-3">
+                        <form asp-controller="Product" asp-action="create" asp-route-returnurl="@ViewData["ReturnUrl"]" enctype="multipart/form-data" method="post" class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">상품 이미지</label>
-                                <input class="form-control" type="file">
+                                <input class="form-control" type="file" id="image" accept="image/*" onchange="setThumbnail(event);"  />
+                                <div id="image_container"></div>
+
+                                <script>
+                                    function setThumbnail(event) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (event) {
+                                            var img = document.createElement("img");
+                                            img.setAttribute("src", event.target.result);
+                                            document.querySelector("div#image_container").appendChild(img);
+                                        };
+
+                                        reader.readAsDataURL(event.target.files[0]);
+                                    }
+                                </script>
+
                             </div>
                             <div class="col-12">
                                 <label class="form-label">상품명</label>
