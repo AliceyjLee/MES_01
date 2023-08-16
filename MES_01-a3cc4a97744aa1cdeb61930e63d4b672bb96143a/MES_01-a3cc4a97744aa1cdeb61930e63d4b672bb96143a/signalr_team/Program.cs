@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.SignalR;
 using signalr_team.ImgHub;
 using signalr_team.IoTHub;
 
@@ -28,7 +29,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapHub<IoTHub>("/iothub");
-app.MapHub<ImgHub>("/imghub");
+app.MapHub<AiHub>("/AiHub");
+app.MapHub<ImageHub>("/ImageHub");
 
 app.Run("http://0.0.0.0:5140");

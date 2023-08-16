@@ -111,6 +111,11 @@ namespace signalr_team.Controllers
             return View();
         }
 
+        public IActionResult UserList()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -2,7 +2,7 @@
 
 namespace signalr_team.ImgHub
 {
-    public class ImgHub : Hub
+    public class ImageHub : Hub
     {
         public async Task SendMessage(string message)
         {
@@ -10,4 +10,5 @@ namespace signalr_team.ImgHub
             await Clients.All.SendAsync("ReceiveMessage", message);
         }
     }
+
 }

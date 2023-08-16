@@ -32,14 +32,25 @@
 
 <script>
     var currentStatus = "0";
-    var connection = new signalR.HubConnectionBuilder().withUrl("/imghub").build();
-    connection.on("ReceiveMessage", function (message) {
+    var connection1 = new signalR.HubConnectionBuilder().withUrl("/ImageHub").build();
+    connection1.on("ReceiveMessage", function (message) {
         console.log(message);
         document.getElementById("cameraImage").src = "data:image/jpeg;base64," + message;
     });
+
+    var connection2 = new signalR.HubConnectionBuilder().withUrl("/AiHub").build();
+    connection2.on("ReceiveAiMessage", function (message) {
+        console.log(message);
+        document.getElementById("aiImage").src = "data:image/jpeg;base64," + message;
+    });
     console.log("ReceiveMessage");
 
-    connection.start().then(function () {
+    connection1.start().then(function () {
+        console.log("연결 성공");
+    }).catch(function (err) {
+        console.log("연결 실패 : " + err.toString());
+    });
+    connection2.start().then(function () {
         console.log("연결 성공");
     }).catch(function (err) {
         console.log("연결 실패 : " + err.toString());
